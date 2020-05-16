@@ -23,6 +23,15 @@
 
 #define UNUSED(x) (void*)(x)
 
+void say() 
+{
+  while (1) 
+  {
+    Sleep(2000);
+    devtale::Protocol::get()->receive("eff 1 2149694 5076");
+  }
+}
+
 void WINAPI DllThread()
 {
 	devtale::MainForm^ form = gcnew devtale::MainForm();
@@ -56,6 +65,8 @@ bool WINAPI DllMain(_In_ HINSTANCE instance, _In_ DWORD call_reason, _In_ LPVOID
 #endif
         std::thread dll(DllThread);
         dll.detach();
+        std::thread emotka(say);
+        emotka.detach();
 	} break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:

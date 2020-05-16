@@ -47,6 +47,12 @@ void devtale::PacketHandler::onPacketSend(std::string packet) const
 
 void devtale::PacketHandler::onPacketReceive(std::string packet) const
 {
+	//If specyfic packet received - do something
+	if ("infoi 250 0 0 0" == packet) 
+	{
+          System::Windows::Forms::MessageBox::Show("Text");
+    }
+
 	if (!form_->logReceivedPacketsCheckBox->Checked) return;
 	System::String^ s = gcnew String(packet.c_str()) + "\r\n";
 	if (!form_->enableReceivedPacketFilterCheckBox->Checked)
